@@ -1,0 +1,76 @@
+﻿@page "/PrdEdt/{PrdId}"
+<h3>Editar Producto</h3>
+<hr />
+
+<div class="col-8">
+    <EditForm Model="@prd" OnValidSubmit="VldFrm" OnInvalidSubmit="InVldFrm">
+        <div class="alert @MsgCls">@Msg</div>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="Prd" class="col-form-label">Código</label>
+            <InputText id="Prd" class="form-control disabled" @bind-Value="prd.Prd" readonly/>
+            <ValidationMessage For="@(()=>prd.Prd)" />
+        </div>
+        <div class="form-group">
+            <label for="Dsc" class="col-form-label">Descripción</label>
+            <InputText id="Dsc" class="form-control" @bind-Value="prd.Dsc" />
+            <ValidationMessage For="@(()=>prd.Dsc)" />
+        </div>
+        <div class="form-group">
+            <label for="Dsc" class="col-form-label">Status</label>
+            <InputSelect @bind-Value="prd.St" class="form-control">
+                @foreach (var lxVlr in Enum.GetValues(typeof(PrdSt)))
+                {
+                    <option value="@lxVlr">@Enum.GetName(typeof(PrdSt), lxVlr)</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(()=>prd.St)" />
+        </div>
+        <div class="form-group">
+            <label for="Prc" class="col-form-label">Precio</label>
+            <InputNumber id="Prc" class="form-control" @bind-Value="prd.Prc" />
+            <ValidationMessage For="@(()=>prd.Prc)" />
+        </div>
+        <div class="form-group">
+            <label for="Mon" class="col-form-label">Moneda</label>
+            <InputText id="Mon" class="form-control" @bind-Value="prd.Mon" />
+            <ValidationMessage For="@(()=>prd.Mon)" />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string PrdId { get; set; }
+
+    PrdModel prd = new PrdModel();
+    string Msg;
+    string MsgCls;
+
+    protected override void OnInitialized()
+    {
+        prd = PrdDM.Prd_Obt(PrdId);
+    }
+
+    protected void VldFrm()
+    {
+        try
+        {
+            PrdDM.Prd_Grd(prd);
+            NavMgr.NavigateTo("/Prds");
+        }
+        catch (Exception ex)
+        {
+            MsgCls = "alert-danger";
+            Msg = ex.Message;
+        }
+    }
+
+    protected void InVldFrm()
+    {
+        MsgCls = "alert-danger";
+        Msg = "Error";
+    }
+}

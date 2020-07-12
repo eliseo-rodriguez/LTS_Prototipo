@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LTS_Proto.BL\LTS_Proto.BL.csproj" />
+    <ProjectReference Include="..\LTS_Proto.DL\LTS_Proto.DL\LTS_Proto.DL.csproj" />
   </ItemGroup>
 
 </Project>

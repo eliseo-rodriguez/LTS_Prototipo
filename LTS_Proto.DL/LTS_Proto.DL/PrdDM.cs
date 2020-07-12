@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Dapper;
+using LTS_Proto.BL.Models;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using LTS_Proto.BL.Models;
-using Microsoft.Extensions.Configuration;
+using System;
 
 namespace LTS_Proto.DL {
     public interface IPrdDM {
@@ -48,7 +48,6 @@ namespace LTS_Proto.DL {
                 throw ex;
             }
         }
-
         public void Prd_Brr(string prd) {
             string lxQry =
                 "DELETE " +
@@ -60,7 +59,6 @@ namespace LTS_Proto.DL {
                 cnx.Query(lxQry, new { Prd = prd });
             }
         }
-
         public async Task<int> Prd_Cre(PrdModel prd) {
             string lxQry =
                 "INSERT INTO [Prd] " +
@@ -86,7 +84,6 @@ namespace LTS_Proto.DL {
                 cnx.Query(lxQry, prd);
             }
         }
-
         public PrdModel Prd_Obt(string prd) {
             string lxQry =
                 "SELECT * " +

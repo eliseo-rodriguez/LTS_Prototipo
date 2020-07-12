@@ -136,6 +136,28 @@ app {
     top: 0.5rem;
 }
 
+.cell-control {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 15%
+}
+
+.login-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh
+}
+.login-panel{
+    margin:10px;
+}
+
+.login-item {
+    min-width: 480px;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
@@ -147,6 +169,15 @@ app {
 
     .main .top-row a, .main .top-row .btn-link {
         margin-left: 0;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column-reverse;
+        width: 100vw;
+        height: 100vh
     }
 }
 
@@ -180,10 +211,4 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
-}
-.vertical-center {
-    display: flex;
-    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-    align-items: center;
 }

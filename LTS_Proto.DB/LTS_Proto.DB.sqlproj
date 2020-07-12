@@ -66,4 +66,7 @@
   <ItemGroup>
     <RefactorLog Include="LTS_ProtoDB.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LTS_Proto.DB.publish.xml" />
+  </ItemGroup>
 </Project>

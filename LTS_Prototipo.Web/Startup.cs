@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using LTS_Proto.Web.Data;
 using Microsoft.AspNetCore.Components.Authorization;
 using Blazored.SessionStorage;
+using LTS_Proto.DL;
 
 namespace LTS_Proto.Web
 {
@@ -33,6 +34,9 @@ namespace LTS_Proto.Web
             services.AddSingleton<WeatherForecastService>();
 
             services.AddScoped<AuthenticationStateProvider, UsrAuthenticationStateProvider>();
+
+            // DI para Acceso a Datos
+            services.AddScoped<IPrdDM, PrdDM>();
 
             services.AddBlazoredSessionStorage();
         }
