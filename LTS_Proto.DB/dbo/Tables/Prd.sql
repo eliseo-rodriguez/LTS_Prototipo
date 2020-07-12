@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Prd]
+(
+	[Prd] VARCHAR(20) NOT NULL PRIMARY KEY, 
+    [Dsc] VARCHAR(250) NOT NULL, 
+    [St] INT NULL, 
+    [Prc] MONEY NULL, 
+    [Mon] VARCHAR(10) NULL
+)

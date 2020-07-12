@@ -1,0 +1,51 @@
+﻿using Blazored.SessionStorage;
+using Microsoft.AspNetCore.Components.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
+namespace LTS_Proto.Web.Data {
+    public class UsrAuthenticationStateProvider : AuthenticationStateProvider {
+        private readonly ISessionStorageService SessionStorage;
+
+        public UsrAuthenticationStateProvider(ISessionStorageService sessionStorage) {
+            SessionStorage = sessionStorage;
+        }
+        public override async Task<AuthenticationState> GetAuthenticationStateAsync() {
+            ClaimsIdentity lxIdentity;
+            var lxUsrSsn = await SessionStorage.GetItemAsync<string>("usr");
+
+            if(lxUsrSsn != null) {
+                lxIdentity = new ClaimsIdentity(new[]
+                     {
+                        new Claim(ClaimTypes.Name, lxUsrSsn),
+                    }, "apiauth_type");
+            } else {
+                lxIdentity = new ClaimsIdentity();
+            }
+            var lxUser = new ClaimsPrincipal(lxIdentity);
+
+            return await Task.FromResult(new AuthenticationState(lxUser));
+        }
+
+        public void MarkUsrAsAuth(string usr) {
+            var lxIdentity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, usr),
+            }, "apiauth_type");
+            var lxUser = new ClaimsPrincipal(lxIdentity);
+
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(lxUser)));
+        }
+
+        public async Task MarkUsrAsLoggedOut() {
+            await SessionStorage.RemoveItemAsync("usr");
+            var lxIdentity = new ClaimsIdentity();
+            var lxUser = new ClaimsPrincipal(lxIdentity);
+
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(lxUser)));
+        }
+    }
+}

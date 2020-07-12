@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Usr]
+(
+	[Usr] VARCHAR(50) NOT NULL PRIMARY KEY, 
+    [Nom] VARCHAR(100) NOT NULL, 
+    [Psw] VARCHAR(100) NULL, 
+    [Rol] VARCHAR(50) NULL, 
+    [St] INT NULL, 
+    [StmCre] DATETIME NULL, 
+    [StmMdf] DATETIME NULL
+)
