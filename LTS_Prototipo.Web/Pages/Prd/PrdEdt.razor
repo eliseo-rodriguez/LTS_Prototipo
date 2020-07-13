@@ -9,7 +9,7 @@
         <ValidationSummary />
         <div class="form-group">
             <label for="Prd" class="col-form-label">Código</label>
-            <InputText id="Prd" class="form-control disabled" @bind-Value="prd.Prd" readonly/>
+            <InputText id="Prd" class="form-control disabled" @bind-Value="prd.Prd" readonly />
             <ValidationMessage For="@(()=>prd.Prd)" />
         </div>
         <div class="form-group">
@@ -51,7 +51,15 @@
 
     protected override void OnInitialized()
     {
-        prd = PrdDM.Prd_Obt(PrdId);
+        try
+        {
+            prd = PrdDM.Prd_Obt(PrdId);
+
+        }
+        catch (Exception ex)
+        {
+            Msg_Set(ex.Message, "alert-danger");
+        }
     }
 
     protected void VldFrm()
@@ -63,14 +71,18 @@
         }
         catch (Exception ex)
         {
-            MsgCls = "alert-danger";
-            Msg = ex.Message;
+            Msg_Set(ex.Message, "alert-danger");
         }
     }
 
     protected void InVldFrm()
     {
-        MsgCls = "alert-danger";
-        Msg = "Error";
+
+    }
+
+    private void Msg_Set(string msg = "", string msgCls = "alert-info")
+    {
+        MsgCls = msgCls;
+        Msg = msg;
     }
 }

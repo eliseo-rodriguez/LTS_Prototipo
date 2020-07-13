@@ -5,6 +5,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject NavigationManager NavMgr
+@inject IJSRuntime js
 
 <div class="login-panel login-item">
     <img src="/img/LatisPro480x320.jpg" alt="Logo" />
@@ -13,33 +14,42 @@
     <h2 class="text-center">Latis Prototipo</h2>
     <h3 class="text-center">Login</h3>
     <EditForm Model="@usr" OnValidSubmit="@UsrVld">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
         <div>
             <div class="form-group">
-                <label>Usuario</label>
-                <input class="form-control col" @bind="usr.Usr" placeholder="Usuario" />
+                <label for="usr">Usuario</label>
+                <InputText id="usr" class="form-control col" @bind-Value="usr.Usr" placeholder="Usuario" />
+                <ValidationMessage For="@(()=>usr.Usr)" />
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control col" @bind="usr.Psw" placeholder="Password" />
+                <InputText id="psw" type="password" class="form-control col" @bind-Value="usr.Psw" placeholder="Password" />
+                <ValidationMessage For="@(()=>usr.Psw)" />
             </div>
         </div>
         <div class="text-center">
             <div class="form-group">
-                <input type="submit" class="form-control col-6 btn btn-primary" value="Login" />
+                <input type="submit" id="psw" class="form-control col-6 btn btn-primary" value="Login" />
             </div>
         </div>
     </EditForm>
 </div>
 
-
-
 @code {
     private UsrModel usr;
 
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         usr = new UsrModel();
-        return base.OnInitializedAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("jsfunction.focusElement", "usr");
+        }
     }
 
     protected async Task<bool> UsrVld()
