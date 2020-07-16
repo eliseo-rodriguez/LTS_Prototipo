@@ -5,7 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap.sass\4.5.0\contentFiles\any\any\wwwroot\css\bootstrap\bootstrap.css" Link="bootstrap.css" />
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap.sass\4.5.0\contentFiles\any\any\wwwroot\css\bootstrap\bootstrap.min.css" Link="bootstrap.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />
+    <PackageReference Include="bootstrap.sass" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
