@@ -31,10 +31,10 @@ app {
             margin-left: 1.5rem;
         }
 
-.main .top-row a:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+        .main .top-row a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
 .sidebar {
     background-image: linear-gradient(180deg, var(--primary) 0%, #3a0647 70%);
@@ -119,12 +119,12 @@ app {
     z-index: 1000;
 }
 
-#blazor-error-ui .dismiss {
-    cursor: pointer;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-}
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
 
 .cell-control {
     white-space: nowrap;
@@ -140,12 +140,23 @@ app {
     width: 100vw;
     height: 100vh
 }
-.login-panel{
-    margin:10px;
+
+.login-panel {
+    margin: 10px;
 }
 
 .login-item {
     min-width: 480px;
+}
+
+#logo {
+    width: 32px;
+    height: 32px;
+}
+
+.sort-link {
+    cursor: pointer;
+    color: var(--primary);
 }
 
 @media (max-width: 767.98px) {

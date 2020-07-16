@@ -18,11 +18,26 @@ else
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Código</th>
-                        <th>Descripción</th>
-                        <th>Status</th>
-                        <th>Precio</th>
-                        <th>Moneda</th>
+                        <th>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Prd"))">Código</span>
+                            <span class="oi @(Ord_Sty("Prd"))"></span>
+                        </th>
+                        <th>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Dsc"))">Descripción</span>
+                            <span class="oi @(Ord_Sty("Dsc"))"></span>
+                        </th>
+                        <th>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("St"))">Status</span>
+                            <span class="oi @(Ord_Sty("St"))"></span>
+                        </th>
+                        <th>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Prc"))">Precio</span>
+                            <span class="oi @(Ord_Sty("Prc"))"></span>
+                        </th>
+                        <th>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Mon"))">Moneda</span>
+                            <span class="oi @(Ord_Sty("Mon"))"></span>
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -57,9 +72,52 @@ else
 
 @code {
     List<PrdModel> LstPrds;
+    private bool IsAsc;
+    private string NomColAct;
 
     protected override async Task OnInitializedAsync()
     {
         LstPrds = await PrdDM.LstPrd_Obt() as List<PrdModel>;
     }
+
+    private string Ord_Sty(string NomCol)
+    {
+        if (NomColAct != NomCol)
+        {
+            return string.Empty;
+        }
+        if (IsAsc)
+        {
+            return "oi-sort-ascending";
+        }
+        else
+        {
+            return "oi-sort-descending";
+        }
+    }
+
+
+    private void Tbl_Ord(string NomCol)
+    {
+        if (NomCol != NomColAct)
+        {
+            LstPrds = LstPrds.OrderByDescending(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
+            NomColAct = NomCol;
+            IsAsc = true;
+        }
+        else
+        {
+            if (IsAsc)
+            {
+                LstPrds = LstPrds.OrderByDescending(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
+            }
+            else
+            {
+                LstPrds = LstPrds.OrderBy(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
+            }
+            IsAsc = !IsAsc;
+        }
+
+    }
+
 }
