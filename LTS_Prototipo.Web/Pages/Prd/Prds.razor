@@ -1,4 +1,5 @@
 ﻿@page "/prds"
+@using LTS_Proto.Web.Components
 
 <h3>Productos</h3>
 <hr />
@@ -19,24 +20,34 @@ else
                 <thead>
                     <tr>
                         <th>
-                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Prd"))">Código</span>
-                            <span class="oi @(Ord_Sty("Prd"))"></span>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Prd"))">
+                                Código
+                                <span class="oi @(Ord_Sty("Prd"))"></span>
+                            </span>
                         </th>
                         <th>
-                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Dsc"))">Descripción</span>
-                            <span class="oi @(Ord_Sty("Dsc"))"></span>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Dsc"))">
+                                Descripción
+                                <span class="oi @(Ord_Sty("Dsc"))"></span>
+                            </span>
                         </th>
                         <th>
-                            <span class="sort-link" @onclick="@(() => Tbl_Ord("St"))">Status</span>
-                            <span class="oi @(Ord_Sty("St"))"></span>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("St"))">
+                                Status
+                                <span class="oi @(Ord_Sty("St"))"></span>
+                            </span>
                         </th>
                         <th>
-                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Prc"))">Precio</span>
-                            <span class="oi @(Ord_Sty("Prc"))"></span>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Prc"))">
+                                Precio
+                                <span class="oi @(Ord_Sty("Prc"))"></span>
+                            </span>
                         </th>
                         <th>
-                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Mon"))">Moneda</span>
-                            <span class="oi @(Ord_Sty("Mon"))"></span>
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Mon"))">
+                                Moneda
+                                <span class="oi @(Ord_Sty("Mon"))"></span>
+                            </span>
                         </th>
                         <th></th>
                     </tr>
@@ -45,10 +56,14 @@ else
                     @foreach (var lxPrd in LstPrds)
                     {
                         <tr>
-                            <td>@lxPrd.Prd</td>
+                            <td>
+                                <a class="nav-link" href="/PrdEdt/@lxPrd.Prd" title="@lxPrd.Prd">
+                                    @lxPrd.Prd
+                                </a>
+                            </td>
                             <td>@lxPrd.Dsc</td>
                             <td>@Enum.GetName(typeof(PrdSt), lxPrd.St)</td>
-                            <td>@lxPrd.Prc</td>
+                            <td><DecimalCell Vlr="@lxPrd.Prc" /></td>
                             <td>@lxPrd.Mon</td>
                             <td class="cell-controls">
                                 <a class="btn btn-outline-primary" href="/PrdEdt/@lxPrd.Prd" title="Editar">
@@ -96,7 +111,6 @@ else
         }
     }
 
-
     private void Tbl_Ord(string NomCol)
     {
         if (NomCol != NomColAct)
@@ -115,9 +129,7 @@ else
             {
                 LstPrds = LstPrds.OrderBy(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
             }
-            IsAsc = !IsAsc;
         }
-
+        IsAsc = !IsAsc;
     }
-
 }

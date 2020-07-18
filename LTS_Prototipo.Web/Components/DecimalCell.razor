@@ -1,0 +1,9 @@
+﻿<span class="float-right">@string.Format("{0:"+ Fmt + "}", Vlr)</span>
+
+@code {
+    [Parameter]
+    public string Fmt { get; set; } = "#,###.00";
+
+    [Parameter]
+    public decimal Vlr { get; set; }
+}
