@@ -18,10 +18,11 @@ namespace LTS_Proto.Web.Data {
             var lxUsrSsn = await SessionStorage.GetItemAsync<string>("usr");
 
             if(lxUsrSsn != null) {
-                lxIdentity = new ClaimsIdentity(new[]
-                     {
-                        new Claim(ClaimTypes.Name, lxUsrSsn),
-                    }, "apiauth_type");
+                var lxClaims = new List<Claim>{
+                    new Claim(ClaimTypes.NameIdentifier, lxUsrSsn)
+                };
+
+                lxIdentity = new ClaimsIdentity(lxClaims, "auth");
             } else {
                 lxIdentity = new ClaimsIdentity();
             }
@@ -46,6 +47,20 @@ namespace LTS_Proto.Web.Data {
             var lxUser = new ClaimsPrincipal(lxIdentity);
 
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(lxUser)));
+        }
+
+        private ClaimsIdentity Identity_Obt(string usrSsn, string nom, string psw, string rol)  {
+            ClaimsIdentity lxIdentity;
+            var lxClaims = new List<Claim>{
+                    new Claim(ClaimTypes.NameIdentifier, usrSsn),
+                    new Claim(ClaimTypes.Name, nom),
+                    new Claim(ClaimTypes.Role, rol),
+                    new Claim("Psw", psw)
+                };
+
+            lxIdentity = new ClaimsIdentity(lxClaims, "auth");
+
+            return lxIdentity;
         }
     }
 }
