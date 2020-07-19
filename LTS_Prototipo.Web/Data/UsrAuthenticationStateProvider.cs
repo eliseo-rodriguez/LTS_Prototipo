@@ -1,4 +1,5 @@
 ﻿using Blazored.SessionStorage;
+using LTS_Proto.DL;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace LTS_Proto.Web.Data {
     public class UsrAuthenticationStateProvider : AuthenticationStateProvider {
         private readonly ISessionStorageService SessionStorage;
 
-        public UsrAuthenticationStateProvider(ISessionStorageService sessionStorage) {
+        public UsrAuthenticationStateProvider(IUsrDM usrDM, ISessionStorageService sessionStorage) {
             SessionStorage = sessionStorage;
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync() {

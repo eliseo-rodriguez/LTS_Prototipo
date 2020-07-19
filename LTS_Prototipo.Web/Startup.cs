@@ -37,6 +37,7 @@ namespace LTS_Proto.Web
 
             // DI para Acceso a Datos
             services.AddScoped<IPrdDM, PrdDM>();
+            services.AddScoped<IUsrDM, UsrDM>();
 
             services.AddBlazoredSessionStorage();
         }

@@ -6,11 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.5" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LTS_Proto.Core\LTS_Proto.Core.csproj" />
-    <ProjectReference Include="..\LTS_Proto.DL\LTS_Proto.DL\LTS_Proto.DL.csproj" />
-  </ItemGroup>
-
 </Project>
