@@ -1,0 +1,21 @@
+﻿
+<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="66px" height="63px" viewBox="0 0 65.5 52.368" enable-background="new 0 0 65.5 52.368" xml:space="preserve">
+    <g>
+        <path fill=var(@FillColor) stroke=var(@StrokeColor) stroke-width="0.825" stroke-opacity="0.992" d="M34.787,41.651l5.012,0.033l-3.359,7.417
+		            H3.417l15.675-38.382l39.846-0.083l-2.393,5.811l-34.479-0.041L10.957,44.227h22.613L34.787,41.651z" />
+
+        <path fill=var(@FillColor) stroke=var(@StrokeColor) stroke-width="0.5" stroke-opacity="0.992" d="M24.18,23.923l2.272-5.566h28.985l-2.301,5.63
+		            L24.18,23.923z M20.972,31.291l2.275-5.564h28.983l-2.299,5.627L20.972,31.291z M17.69,38.986l2.275-5.566h28.982l-2.3,5.63
+		            L17.69,38.986z M33.101,3.267l-2.275,5.565l28.957,0.064l2.301-5.627L33.101,3.267z" />
+    </g>
+</svg>
+
+
+@code {
+    [Parameter]
+    public string FillColor { get; set; } = "--primary";
+
+    [Parameter]
+    public string StrokeColor { get; set; } = "--primary";
+}
