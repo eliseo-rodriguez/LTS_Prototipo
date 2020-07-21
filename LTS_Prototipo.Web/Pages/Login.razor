@@ -1,43 +1,51 @@
 ﻿@layout LoginLayout
+
 @page "/"
-@using LTS_Proto.BL.Models
+
 @using LTS_Proto.Web.Data
+
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject NavigationManager NavMgr
 @inject IJSRuntime js
+@inject UsrBO UsrBO
 
 <div class="login-panel login-item">
     <img src="/img/LatisPro480x320.jpg" alt="Logo" />
 </div>
 <div class="login-panel login-item">
-    <h2 class="text-center">Latis Prototipo</h2>
-    <h3 class="text-center">Login</h3>
-    <EditForm Model="@usr" OnValidSubmit="@UsrVld">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <div>
-            <div class="form-group">
-                <label for="usr">Usuario</label>
-                <InputText id="usr" class="form-control col" @bind-Value="usr.Usr" placeholder="Usuario" />
-                <ValidationMessage For="@(()=>usr.Usr)" />
+    <div class="bg-secondary px-3 py-3">
+        <h2 class="text-center bg-primary">Latis Prototipo</h2>
+        <h3 class="text-center">Login</h3>
+        <EditForm Model="@usr" OnValidSubmit="@UsrVld">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div>
+                <div class="form-group">
+                    <label for="usr">Usuario</label>
+                    <InputText id="usr" class="form-control col" @bind-Value="usr.Usr" placeholder="Usuario" />
+                    <ValidationMessage For="@(()=>usr.Usr)" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <InputText id="psw" type="password" class="form-control col" @bind-Value="usr.Psw" placeholder="Password" />
+                    <ValidationMessage For="@(()=>usr.Psw)" />
+                </div>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <InputText id="psw" type="password" class="form-control col" @bind-Value="usr.Psw" placeholder="Password" />
-                <ValidationMessage For="@(()=>usr.Psw)" />
+            <div class="text-center">
+                <div class="form-group">
+                    <input type="submit" id="psw" class="form-control col-6 btn btn-primary" value="Login" />
+                </div>
             </div>
-        </div>
-        <div class="text-center">
-            <div class="form-group">
-                <input type="submit" id="psw" class="form-control col-6 btn btn-primary" value="Login" />
-            </div>
-        </div>
-    </EditForm>
+            <Msg Cls="@MsgCls" Txt="@Msg" />
+        </EditForm>
+    </div>
 </div>
 
 @code {
     private UsrModel usr;
+    private string Msg;
+    private string MsgCls;
 
     protected override void OnInitialized()
     {
@@ -54,11 +62,28 @@
 
     protected async Task<bool> UsrVld()
     {
-        ((UsrAuthenticationStateProvider)AuthenticationStateProvider).MarkUsrAsAuth(usr.Usr);
-        NavMgr.NavigateTo("/index");
+        UsrModel lxUsr;
+        try
+        {
+            lxUsr = UsrBO.Auth(usr.Usr, usr.Psw) as UsrModel;
 
-        await sessionStorage.SetItemAsync("usr", usr.Usr);
-
-        return await Task.FromResult(true);
+            if (lxUsr == null)
+            {
+                (Msg, MsgCls) = Util.Msg_Set("Usuario o contrasña invalida", "alert-danger");
+                return await Task.FromResult(false);
+            }
+            else
+            {
+                ((UsrAuthenticationStateProvider)AuthenticationStateProvider).MarkUsrAsAuth(lxUsr);
+                await sessionStorage.SetItemAsync("usr", usr.Usr);
+                NavMgr.NavigateTo("/index");
+                return await Task.FromResult(true);
+            }
+        }
+        catch (Exception ex)
+        {
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
+            return await Task.FromResult(false);
+        }
     }
 }

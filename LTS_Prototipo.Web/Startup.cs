@@ -13,6 +13,7 @@ using LTS_Proto.Web.Data;
 using Microsoft.AspNetCore.Components.Authorization;
 using Blazored.SessionStorage;
 using LTS_Proto.DL;
+using LTS_Proto.BL.BO;
 
 namespace LTS_Proto.Web
 {
@@ -38,6 +39,7 @@ namespace LTS_Proto.Web
             // DI para Acceso a Datos
             services.AddScoped<IPrdDM, PrdDM>();
             services.AddScoped<IUsrDM, UsrDM>();
+            services.AddScoped<UsrBO>();
 
             services.AddBlazoredSessionStorage();
         }

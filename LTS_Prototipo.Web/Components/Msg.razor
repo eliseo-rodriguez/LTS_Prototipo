@@ -1,0 +1,12 @@
+﻿@if (Txt != null)
+{
+    <div class="alert @Cls">@Txt</div>
+}
+
+@code {
+    [Parameter]
+    public string Txt { get; set; }
+
+    [Parameter]
+    public string Cls { get; set; }
+}

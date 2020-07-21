@@ -1,5 +1,4 @@
 ﻿@page "/prds"
-@using LTS_Proto.Web.Components
 
 <h3>Productos</h3>
 <hr />
@@ -37,7 +36,7 @@ else
                                 <span class="oi @(Ord_Sty("St"))"></span>
                             </span>
                         </th>
-                        <th>
+                        <th class="text-right">
                             <span class="sort-link" @onclick="@(() => Tbl_Ord("Prc"))">
                                 Precio
                                 <span class="oi @(Ord_Sty("Prc"))"></span>
@@ -81,7 +80,7 @@ else
     }
     else
     {
-        <p class="alert alert-info">No hay datos.</p>
+        <Msg Txt="No hay datos." Cls="alert-info" />
     }
 }
 

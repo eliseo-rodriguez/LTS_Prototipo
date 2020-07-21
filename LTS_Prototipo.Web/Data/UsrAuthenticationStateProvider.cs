@@ -1,4 +1,5 @@
 ﻿using Blazored.SessionStorage;
+using LTS_Proto.BL.Models;
 using LTS_Proto.DL;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
@@ -32,11 +33,8 @@ namespace LTS_Proto.Web.Data {
             return await Task.FromResult(new AuthenticationState(lxUser));
         }
 
-        public void MarkUsrAsAuth(string usr) {
-            var lxIdentity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, usr),
-            }, "apiauth_type");
+        public void MarkUsrAsAuth(UsrModel usr) {
+            var lxIdentity = Identity_Obt(usr.Usr, usr.Nom, usr.Psw, usr.Rol);
             var lxUser = new ClaimsPrincipal(lxIdentity);
 
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(lxUser)));

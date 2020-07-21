@@ -1,0 +1,98 @@
+﻿@page "/Usrs"
+
+@inject UsrBO _UsrBO
+@inject LTS_Proto.DL.IUsrDM _UsrDM
+
+<h3>Usuarios</h3>
+<hr />
+<a href="/UsrCre" class="btn btn-primary mb-3">
+    <span class="oi oi-plus" aria-hidden="true"></span> Nuevo Usuario
+</a>
+
+@if (LstUsrs == null)
+{
+    <p>Cargando</p>
+}
+else
+{
+    if (LstUsrs.Count > 0)
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Rol
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Creado
+                        </th>
+                        <th>
+                            Modificado
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var lxUsr in LstUsrs)
+                    {
+                    <tr>
+                        <td>
+                            <a class="nav" href="UsrEdt/@lxUsr.Usr" title="@lxUsr.Nom">
+                                @lxUsr.Usr
+                            </a>
+                        </td>
+                        <td>
+                            @lxUsr.Nom
+                        </td>
+                        <td>
+                            @lxUsr.Rol
+                        </td>
+                        <td>
+                            @Enum.GetName(typeof(UsrSt), lxUsr.St)
+                        </td>
+                        <td>
+                            @lxUsr.StmCre
+                        </td>
+                        <td>
+                            @lxUsr.StmMdf
+                        </td>
+                        <td class="cell-controls">
+                            <a class="btn btn-outline-primary" href="/UsrEdt/@lxUsr.Usr" title="Editar">
+                                <span class="oi oi-pencil"></span>
+                            </a>
+                            <a class="btn btn-outline-primary" href="/UsrBrr/@lxUsr.Usr" title="Borrar">
+                                <span class="oi oi-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <Msg Txt="No hay datos." Cls="alert-info"/>
+    }
+}
+
+@code {
+    List<UsrModel> LstUsrs;
+    private bool IsAsc;
+    private string NomColAct;
+
+    protected override async Task OnInitializedAsync()
+    {
+        LstUsrs = await _UsrBO.Lst_Obt() as List<UsrModel>;
+    }
+}

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Security;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LTS_Proto.BL.BO {
     public class UsrBO {
@@ -13,14 +14,18 @@ namespace LTS_Proto.BL.BO {
             UsrDM = usrDM;
         }
         public UsrModel Auth(string usr, string psw) {
-            UsrModel lxUsr = UsrDM.Usr_Auth(usr, psw);
+            UsrModel lxUsr = UsrDM.Auth(usr, psw);
 
             return lxUsr;
         }
 
         public UsrModel Obt(string usr) {
-            UsrModel lxUsr = UsrDM.Usr_Obt(usr);
+            UsrModel lxUsr = UsrDM.Obt(usr);
             return lxUsr;
+        }
+
+        public async Task<IEnumerable<UsrModel>> Lst_Obt() {
+            return await UsrDM.Lst_Obt();
         }
     }
 }

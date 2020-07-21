@@ -12,13 +12,12 @@ using System;
 namespace LTS_Proto.DL {
     public interface IUsrDM {
         IDbConnection SqlCnx { get; }
-
-        Task<IEnumerable<UsrModel>> LstUsr_Obt();
-        UsrModel Usr_Auth(string usr, string psw);
-        void Usr_Brr(string usr);
-        Task<int> Usr_Cre(UsrModel usr);
-        void Usr_Grd(UsrModel usr);
-        UsrModel Usr_Obt(string usr);
+        Task<IEnumerable<UsrModel>> Lst_Obt();
+        UsrModel Auth(string usr, string psw);
+        void Brr(string usr);
+        Task<int> Cre(UsrModel usr);
+        void Grd(UsrModel usr);
+        UsrModel Obt(string usr);
     }
 
     public class UsrDM : IUsrDM {
@@ -34,7 +33,7 @@ namespace LTS_Proto.DL {
             }
         }
 
-        public async Task<IEnumerable<UsrModel>> LstUsr_Obt() {
+        public async Task<IEnumerable<UsrModel>> Lst_Obt() {
             string lxQry =
                 "SELECT * " +
                 "  FROM [Usr] ";
@@ -48,7 +47,8 @@ namespace LTS_Proto.DL {
                 throw ex;
             }
         }
-        public UsrModel Usr_Auth(string usr, string psw) {
+
+        public UsrModel Auth(string usr, string psw) {
             string lxQry =
                 "SELECT * " +
                 "  FROM [Usr] " +
@@ -57,11 +57,11 @@ namespace LTS_Proto.DL {
 
             using(IDbConnection cnx = SqlCnx) {
                 cnx.Open();
-                return cnx.Query<UsrModel>(lxQry, new { Usr = usr }).FirstOrDefault();
+                return cnx.Query<UsrModel>(lxQry, new { Usr = usr, Psw = psw }).FirstOrDefault();
             }
         }
 
-        public void Usr_Brr(string usr) {
+        public void Brr(string usr) {
             string lxQry =
                 "DELETE " +
                 "  FROM [Usr] " +
@@ -72,7 +72,7 @@ namespace LTS_Proto.DL {
                 cnx.Query(lxQry, new { Usr = usr });
             }
         }
-        public async Task<int> Usr_Cre(UsrModel usr) {
+        public async Task<int> Cre(UsrModel usr) {
             string lxQry =
                 "INSERT INTO [Usr] " +
                 "(Usr, Nom, Psw, Rol, St, StmCre, StmMdf) " +
@@ -87,7 +87,7 @@ namespace LTS_Proto.DL {
                 return (int)lxRtrnVal;
             }
         }
-        public void Usr_Grd(UsrModel usr) {
+        public void Grd(UsrModel usr) {
             string lxQry =
                 "UPDATE [Usr] " +
                 "   SET Nom = @Nom, Psw = @Psw, Rol = @Rol, St = @St, StmMdf = GetDate() " +
@@ -97,7 +97,7 @@ namespace LTS_Proto.DL {
                 cnx.Query(lxQry, usr);
             }
         }
-        public UsrModel Usr_Obt(string usr) {
+        public UsrModel Obt(string usr) {
             string lxQry =
                 "SELECT * " +
                 "  FROM [Usr] " +

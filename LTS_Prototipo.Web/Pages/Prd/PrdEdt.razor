@@ -58,7 +58,7 @@
         }
         catch (Exception ex)
         {
-            Msg_Set(ex.Message, "alert-danger");
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
         }
     }
 
@@ -71,18 +71,12 @@
         }
         catch (Exception ex)
         {
-            Msg_Set(ex.Message, "alert-danger");
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
         }
     }
 
     protected void InVldFrm()
     {
 
-    }
-
-    private void Msg_Set(string msg = "", string msgCls = "alert-info")
-    {
-        MsgCls = msgCls;
-        Msg = msg;
     }
 }
