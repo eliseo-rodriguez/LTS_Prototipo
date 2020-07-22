@@ -53,10 +53,13 @@ namespace LTS_Proto.DL {
                 "DELETE " +
                 "  FROM [Prd] " +
                 " WHERE Prd = @Prd";
-
-            using(IDbConnection cnx = SqlCnx) {
-                cnx.Open();
-                cnx.Query(lxQry, new { Prd = prd });
+            try {
+                using(IDbConnection cnx = SqlCnx) {
+                    cnx.Open();
+                    cnx.Query(lxQry, new { Prd = prd });
+                }
+            } catch(Exception ex) {
+                throw ex;
             }
         }
         public async Task<int> Prd_Cre(PrdModel prd) {
@@ -67,11 +70,15 @@ namespace LTS_Proto.DL {
                 "VALUES " +
                 "(@Prd, @Dsc, @St, @Prc, @Mon) ";
 
-            using(IDbConnection cnx = SqlCnx) {
-                cnx.Open();
-                var lxRtrnVal = await cnx.ExecuteAsync(lxQry, prd);
+            try {
+                using(IDbConnection cnx = SqlCnx) {
+                    cnx.Open();
+                    var lxRtrnVal = await cnx.ExecuteAsync(lxQry, prd);
 
-                return (int)lxRtrnVal;
+                    return (int)lxRtrnVal;
+                }
+            } catch(Exception ex) {
+                throw ex;
             }
         }
         public void Prd_Grd(PrdModel prd) {
@@ -79,9 +86,13 @@ namespace LTS_Proto.DL {
                 "UPDATE [Prd] " +
                 "   SET Dsc = @Dsc, St = @St, Prc = @Prc, Mon = @Mon " +
                 " WHERE Prd = @Prd";
-            using(IDbConnection cnx = SqlCnx) {
-                cnx.Open();
-                cnx.Query(lxQry, prd);
+            try {
+                using(IDbConnection cnx = SqlCnx) {
+                    cnx.Open();
+                    cnx.Query(lxQry, prd);
+                }
+            } catch(Exception ex) {
+                throw ex;
             }
         }
         public PrdModel Prd_Obt(string prd) {
@@ -90,9 +101,14 @@ namespace LTS_Proto.DL {
                 "  FROM [Prd] " +
                 " WHERE Prd = @Prd";
 
-            using(IDbConnection cnx = SqlCnx) {
-                cnx.Open();
-                return cnx.Query<PrdModel>(lxQry, new { Prd = prd }).FirstOrDefault();
+            try {
+                using(IDbConnection cnx = SqlCnx) {
+                    cnx.Open();
+                    return cnx.Query<PrdModel>(lxQry, new { Prd = prd }).FirstOrDefault();
+                }
+
+            } catch(Exception ex) {
+                throw ex;
             }
         }
     }
