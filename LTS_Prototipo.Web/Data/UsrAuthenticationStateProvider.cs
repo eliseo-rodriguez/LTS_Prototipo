@@ -64,16 +64,16 @@ namespace LTS_Proto.Web.Data {
             return lxIdentity;
         }
 
-        private async Task Ssn_Set(UsrModel usr) {
-            await SessionStorage.SetItemAsync("usr", usr.Usr);
-            await SessionStorage.SetItemAsync("nom", usr.Nom);
-            await SessionStorage.SetItemAsync("rol", usr.Rol);
-        }
-
         private async Task Ssn_Rmv() {
             await SessionStorage.RemoveItemAsync("usr");
             await SessionStorage.RemoveItemAsync("nom");
             await SessionStorage.RemoveItemAsync("rol");
+        }
+
+        private async Task Ssn_Set(UsrModel usr) {
+            await SessionStorage.SetItemAsync("usr", usr.Usr);
+            await SessionStorage.SetItemAsync("nom", usr.Nom);
+            await SessionStorage.SetItemAsync("rol", usr.Rol);
         }
     }
 }

@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Blazored.SessionStorage;
 using LTS_Proto.DL;
 using LTS_Proto.BL.BO;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace LTS_Proto.Web
 {
@@ -32,11 +35,14 @@ namespace LTS_Proto.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
-            services.AddScoped<AuthenticationStateProvider, UsrAuthenticationStateProvider>();
+            //Localization
+            services.AddLocalization( options =>{ options.ResourcesPath = "Resources";  });
 
             // DI para Acceso a Datos
+            services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<AuthenticationStateProvider, UsrAuthenticationStateProvider>();
+
             services.AddScoped<IPrdDM, PrdDM>();
             services.AddScoped<IUsrDM, UsrDM>();
             services.AddScoped<UsrBO>();
@@ -57,6 +63,16 @@ namespace LTS_Proto.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // Localization
+            var supportedCultures = new List<CultureInfo>{ new CultureInfo("en"), new CultureInfo("es")};
+            var localizationOptions = new RequestLocalizationOptions {
+                DefaultRequestCulture = new RequestCulture("en"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            };
+            app.UseRequestLocalization(localizationOptions);
+            // End Localization
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

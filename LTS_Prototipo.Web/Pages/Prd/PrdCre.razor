@@ -4,7 +4,7 @@
 <hr />
 <div class="col-8">
     <EditForm Model="@prd" OnValidSubmit="VldFrm" OnInvalidSubmit="InVldFrm">
-        <div class="alert @MsgCls">@Msg</div>
+        <Msg Txt="@Msg"  Cls="@MsgCls"/>
         <DataAnnotationsValidator />
         <ValidationSummary />
         <div class="form-group">

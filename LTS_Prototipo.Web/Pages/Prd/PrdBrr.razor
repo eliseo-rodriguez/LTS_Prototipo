@@ -4,7 +4,7 @@
 
 <p>¿Seguro de Borrar el siguiente producto?</p>
 <div class="col-8 mb-3">
-    <div class="alert @MsgCls">@Msg</div>
+    <Msg Txt="@Msg" Cls="@MsgCls" />
     <table class="table table-borderless">
         <tr>
             <th>Código</th>
@@ -23,7 +23,7 @@
             <td>@prd.Mon</td>
         </tr>
     </table>
-
+    <hr/>
     <button class="btn btn-danger" @onclick="@Aceptar_Click">Aceptar</button>
     <button class="btn btn-secondary" @onclick="@Cancel_Click">Cancelar</button>
 </div>
