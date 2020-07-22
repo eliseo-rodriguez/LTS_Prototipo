@@ -1,0 +1,72 @@
+﻿@page "/usrbrr/{UsrId}"
+
+@inject UsrBO _UsrBO
+
+<h3>Borrar Usuario</h3>
+
+<p>¿Seguro de Borrar el siguiente producto?</p>
+<div class="col-8 mb-3">
+    <div class="alert @MsgCls">@Msg</div>
+    <table class="table table-borderless">
+        <tr>
+            <th>Código</th>
+            <td>@usr.Usr</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>@usr.Nom</td>
+        </tr>
+        <tr>
+            <th>Rol</th>
+            <td>@usr.Rol</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>@Enum.GetName(typeof(UsrSt), usr.St)</td>
+        </tr>
+    </table>
+
+    <button class="btn btn-danger" @onclick="@Aceptar_Click">Aceptar</button>
+    <button class="btn btn-secondary" @onclick="@Cancel_Click">Cancelar</button>
+</div>
+
+@code {
+    [Parameter]
+    public string UsrId { get; set; }
+
+    UsrModel usr = new UsrModel();
+    string Msg;
+    string MsgCls;
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            usr = _UsrBO.Obt(UsrId);
+
+        }
+        catch (Exception ex)
+        {
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
+        }
+    }
+
+    private void Aceptar_Click()
+    {
+        try
+        {
+            _UsrBO.Brr(UsrId);
+            NavMgr.NavigateTo("/Usrs");
+        }
+        catch (Exception ex)
+        {
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
+        }
+    }
+
+    private void Cancel_Click()
+    {
+        NavMgr.NavigateTo("/Usrs");
+    }
+
+}

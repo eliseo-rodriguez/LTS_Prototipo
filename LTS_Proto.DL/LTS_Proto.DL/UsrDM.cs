@@ -79,12 +79,15 @@ namespace LTS_Proto.DL {
                 "OUTPUT Inserted.Usr " +
                 "VALUES " +
                 "(@Usr, @Nom, @Psw, @Rol, @St, GetDate(), GetDate()) ";
+            try {
+                using(IDbConnection cnx = SqlCnx) {
+                    cnx.Open();
+                    var lxRtrnVal = await cnx.ExecuteAsync(lxQry, usr);
 
-            using(IDbConnection cnx = SqlCnx) {
-                cnx.Open();
-                var lxRtrnVal = await cnx.ExecuteAsync(lxQry, usr);
-
-                return (int)lxRtrnVal;
+                    return (int)lxRtrnVal;
+                }
+            } catch (Exception ex) {
+                throw ex;
             }
         }
         public void Grd(UsrModel usr) {

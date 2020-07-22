@@ -18,6 +18,20 @@ namespace LTS_Proto.BL.BO {
 
             return lxUsr;
         }
+        public void Brr(string UsrId) {
+            UsrDM.Brr(UsrId);
+        }
+        public async Task<int> Cre(UsrModel usr) {
+            try {
+                var lxRows = await UsrDM.Cre(usr);
+                return lxRows;
+            } catch(Exception ex) { 
+                throw ex;
+            }
+        }
+        public void Grd(UsrModel usr) {
+            UsrDM.Grd(usr);
+        }
 
         public UsrModel Obt(string usr) {
             UsrModel lxUsr = UsrDM.Obt(usr);

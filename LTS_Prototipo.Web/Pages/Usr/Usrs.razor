@@ -1,7 +1,7 @@
 ﻿@page "/Usrs"
 
 @inject UsrBO _UsrBO
-@inject LTS_Proto.DL.IUsrDM _UsrDM
+@*@inject LTS_Proto.DL.IUsrDM _UsrDM*@
 
 <h3>Usuarios</h3>
 <hr />
@@ -22,59 +22,77 @@ else
                 <thead>
                     <tr>
                         <th>
-                            Usuario
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Usr"))">
+                                Usuario
+                                <span class="oi @(Ord_Sty("Usr"))"></span>
+                            </span>
                         </th>
                         <th>
-                            Nombre
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Nom"))">
+                                Nombre
+                                <span class="oi @(Ord_Sty("Nom"))"></span>
+                            </span>
                         </th>
                         <th>
-                            Rol
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Rol"))">
+                                Rol
+                                <span class="oi @(Ord_Sty("Rol"))"></span>
+                            </span>
                         </th>
                         <th>
-                            Status
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("Rol"))">
+                                Status
+                                <span class="oi @(Ord_Sty("Rol"))"></span>
+                            </span>
                         </th>
                         <th>
-                            Creado
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("StmCre"))">
+                                Creado
+                                <span class="oi @(Ord_Sty("StmCre"))"></span>
+                            </span>
                         </th>
                         <th>
-                            Modificado
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("StMdf"))">
+                                Modificado
+                                <span class="oi @(Ord_Sty("StmMdf"))"></span>
+                            </span>
                         </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var lxUsr in LstUsrs)
+                    @foreach (var lxUsr in LstUsrs)
                     {
-                    <tr>
-                        <td>
-                            <a class="nav" href="UsrEdt/@lxUsr.Usr" title="@lxUsr.Nom">
-                                @lxUsr.Usr
-                            </a>
-                        </td>
-                        <td>
-                            @lxUsr.Nom
-                        </td>
-                        <td>
-                            @lxUsr.Rol
-                        </td>
-                        <td>
-                            @Enum.GetName(typeof(UsrSt), lxUsr.St)
-                        </td>
-                        <td>
-                            @lxUsr.StmCre
-                        </td>
-                        <td>
-                            @lxUsr.StmMdf
-                        </td>
-                        <td class="cell-controls">
-                            <a class="btn btn-outline-primary" href="/UsrEdt/@lxUsr.Usr" title="Editar">
-                                <span class="oi oi-pencil"></span>
-                            </a>
-                            <a class="btn btn-outline-primary" href="/UsrBrr/@lxUsr.Usr" title="Borrar">
-                                <span class="oi oi-trash"></span>
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <a class="nav" href="UsrDet/@lxUsr.Usr" title="@lxUsr.Nom">
+                                    @lxUsr.Usr
+                                </a>
+                            </td>
+                            <td>
+                                @lxUsr.Nom
+                            </td>
+                            <td>
+                                @lxUsr.Rol
+                            </td>
+                            <td>
+                                @Enum.GetName(typeof(UsrSt), lxUsr.St)
+                            </td>
+                            <td>
+                                @lxUsr.StmCre
+                            </td>
+                            <td>
+                                @lxUsr.StmMdf
+                            </td>
+                            <td class="cell-controls">
+                                <a class="btn btn-outline-primary" href="/UsrEdt/@lxUsr.Usr" title="Editar">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
+                                <a class="btn btn-outline-primary" href="/UsrBrr/@lxUsr.Usr" title="Borrar">
+                                    <span class="oi oi-trash"></span>
+                                </a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -82,7 +100,7 @@ else
     }
     else
     {
-        <Msg Txt="No hay datos." Cls="alert-info"/>
+        <Msg Txt="No hay datos." Cls="alert-info" />
     }
 }
 
@@ -94,5 +112,41 @@ else
     protected override async Task OnInitializedAsync()
     {
         LstUsrs = await _UsrBO.Lst_Obt() as List<UsrModel>;
+    }
+    private string Ord_Sty(string NomCol)
+    {
+        if (NomColAct != NomCol)
+        {
+            return string.Empty;
+        }
+        if (IsAsc)
+        {
+            return "oi-sort-ascending";
+        }
+        else
+        {
+            return "oi-sort-descending";
+        }
+    }
+    private void Tbl_Ord(string NomCol)
+    {
+        if (NomCol != NomColAct)
+        {
+            LstUsrs = LstUsrs.OrderByDescending(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
+            NomColAct = NomCol;
+            IsAsc = true;
+        }
+        else
+        {
+            if (IsAsc)
+            {
+                LstUsrs = LstUsrs.OrderByDescending(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
+            }
+            else
+            {
+                LstUsrs = LstUsrs.OrderBy(x => x.GetType().GetProperty(NomCol).GetValue(x, null)).ToList();
+            }
+        }
+        IsAsc = !IsAsc;
     }
 }

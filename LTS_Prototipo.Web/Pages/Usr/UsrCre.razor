@@ -1,0 +1,69 @@
+﻿@page "/usrcre"
+
+@inject UsrBO _UsrBO
+
+<h3>Nuevo Usuario</h3>
+<hr />
+<div class="col-8">
+    <EditForm Model="@usr" OnValidSubmit="VldFrm" OnInvalidSubmit="InVldFrm">
+        <div class="alert @MsgCls">@Msg</div>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="Usr" class="col-form-label">Código</label>
+            <InputText id="Usr" class="form-control" @bind-Value="usr.Usr" />
+            <ValidationMessage For="@(()=>usr.Usr)" />
+        </div>
+        <div class="form-group">
+            <label for="Nom" class="col-form-label">Nombre</label>
+            <InputText id="Nom" class="form-control" @bind-Value="usr.Nom" />
+            <ValidationMessage For="@(()=>usr.Nom)" />
+        </div>
+        <div class="form-group">
+            <label for="Psw" class="col-form-label">Contraseña</label>
+            <InputText type="password" id="Psw" class="form-control" @bind-Value="usr.Psw" />
+            <ValidationMessage For="@(()=>usr.Psw)" />
+        </div>
+        <div class="form-group">
+            <label for="Rol" class="col-form-label">Rol</label>
+            <InputText id="Rol" class="form-control" @bind-Value="usr.Rol" />
+            <ValidationMessage For="@(()=>usr.Rol)" />
+        </div>
+        <div class="form-group">
+            <label for="St" class="col-form-label">Status</label>
+            <InputSelect id="St" @bind-Value="usr.St" class="form-control">
+                @foreach (var lxVlr in Enum.GetValues(typeof(UsrSt)))
+                {
+                    <option value="@lxVlr">@Enum.GetName(typeof(UsrSt), lxVlr)</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(()=>usr.St)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </EditForm>
+</div>
+
+@code {
+    UsrModel usr = new UsrModel();
+    string Msg;
+    string MsgCls;
+
+    protected void VldFrm()
+    {
+        try
+        {
+            var lxUsr = _UsrBO.Cre(usr);
+            NavMgr.NavigateTo("/Usrs");
+        }
+        catch (Exception ex)
+        {
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
+        }
+    }
+
+    protected void InVldFrm()
+    {
+        (Msg, MsgCls) = Util.Msg_Set("Error", "alert-danger");
+    }
+}

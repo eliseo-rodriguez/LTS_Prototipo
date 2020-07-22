@@ -20,11 +20,10 @@ namespace LTS_Proto.Web.Data {
             var lxUsrSsn = await SessionStorage.GetItemAsync<string>("usr");
 
             if(lxUsrSsn != null) {
-                var lxClaims = new List<Claim>{
-                    new Claim(ClaimTypes.NameIdentifier, lxUsrSsn)
-                };
+                var lxNomSsn = await SessionStorage.GetItemAsync<string>("nom");
+                var lxRolSsn = await SessionStorage.GetItemAsync<string>("rol");
 
-                lxIdentity = new ClaimsIdentity(lxClaims, "auth");
+                lxIdentity = Identity_Obt(lxUsrSsn, lxNomSsn, "", lxRolSsn);
             } else {
                 lxIdentity = new ClaimsIdentity();
             }
@@ -33,22 +32,25 @@ namespace LTS_Proto.Web.Data {
             return await Task.FromResult(new AuthenticationState(lxUser));
         }
 
-        public void MarkUsrAsAuth(UsrModel usr) {
+        public async void MarkUsrAsAuth(UsrModel usr) {
             var lxIdentity = Identity_Obt(usr.Usr, usr.Nom, usr.Psw, usr.Rol);
             var lxUser = new ClaimsPrincipal(lxIdentity);
 
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(lxUser)));
+
+            await Ssn_Set(usr);
         }
 
         public async Task MarkUsrAsLoggedOut() {
-            await SessionStorage.RemoveItemAsync("usr");
+            await Ssn_Rmv();
+
             var lxIdentity = new ClaimsIdentity();
             var lxUser = new ClaimsPrincipal(lxIdentity);
 
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(lxUser)));
         }
 
-        private ClaimsIdentity Identity_Obt(string usrSsn, string nom, string psw, string rol)  {
+        private ClaimsIdentity Identity_Obt(string usrSsn, string nom, string psw, string rol) {
             ClaimsIdentity lxIdentity;
             var lxClaims = new List<Claim>{
                     new Claim(ClaimTypes.NameIdentifier, usrSsn),
@@ -60,6 +62,18 @@ namespace LTS_Proto.Web.Data {
             lxIdentity = new ClaimsIdentity(lxClaims, "auth");
 
             return lxIdentity;
+        }
+
+        private async Task Ssn_Set(UsrModel usr) {
+            await SessionStorage.SetItemAsync("usr", usr.Usr);
+            await SessionStorage.SetItemAsync("nom", usr.Nom);
+            await SessionStorage.SetItemAsync("rol", usr.Rol);
+        }
+
+        private async Task Ssn_Rmv() {
+            await SessionStorage.RemoveItemAsync("usr");
+            await SessionStorage.RemoveItemAsync("nom");
+            await SessionStorage.RemoveItemAsync("rol");
         }
     }
 }

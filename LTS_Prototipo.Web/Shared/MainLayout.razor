@@ -1,4 +1,7 @@
 ﻿@using LTS_Proto.Web.Data
+@using System.Linq;
+@using System.Security.Claims;
+
 @inherits LayoutComponentBase
 @inject NavigationManager NavMgr
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -11,7 +14,12 @@
     <div class="top-row px-4">
         <AuthorizeView>
             <Authorized>
-                <a href="/" @onclick="Logout">Log Out</a>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item ml-auto">
+                            <a class="btn btn-outline-primary" href="/UsrDet/@UsrId">@Nom</a>
+                            <a class="btn btn-outline-secondary" href="/" @onclick="Logout">Log Out</a>
+                    </li>
+                </ul>
             </Authorized>
             <NotAuthorized>
                 <a href="/">Login</a>
@@ -25,8 +33,26 @@
 </div>
 
 @code{
+    string UsrId;
+    string Nom;
+    string Rol;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var lxUsrState = await ((UsrAuthenticationStateProvider)AuthenticationStateProvider).GetAuthenticationStateAsync();
+        ClaimsPrincipal lxUsrIdentity = lxUsrState.User;
+
+        Nom = lxUsrIdentity.Identity.Name;
+        if (Nom != null)
+        {
+            Rol = lxUsrIdentity.FindFirst(ClaimTypes.Role).Value;
+            UsrId = lxUsrIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+        }
+    }
+
     public async Task Logout()
     {
+
         await ((UsrAuthenticationStateProvider)AuthenticationStateProvider).MarkUsrAsLoggedOut();
         NavMgr.NavigateTo("/");
     }
