@@ -1,12 +1,16 @@
 ﻿@page "/Usrs"
 
 @inject UsrBO _UsrBO
+@inject IJSRuntime js
 
 <h3 class="text-primary">@L["Users"]</h3>
 <hr />
 <a href="/UsrCre" class="btn btn-primary mb-3">
     <span class="oi oi-plus" aria-hidden="true"></span> @L["New User"]
 </a>
+<button class="btn btn-outline-primary mb-3" @onclick="Pdf_Exp">
+    <span class="oi oi-external-link" aria-hidden="true"></span> @L["Export to PDF"]
+</button>
 
 @if (LstUsrs == null)
 {
@@ -46,13 +50,13 @@ else
                         </th>
                         <th>
                             <span class="sort-link" @onclick="@(() => Tbl_Ord("StmCre"))">
-                                Creado
+                                @L["Created"]
                                 <span class="oi @(Ord_Sty("StmCre"))"></span>
                             </span>
                         </th>
                         <th>
                             <span class="sort-link" @onclick="@(() => Tbl_Ord("StMdf"))">
-                                Modificado
+                                @L["Modified"]
                                 <span class="oi @(Ord_Sty("StmMdf"))"></span>
                             </span>
                         </th>
@@ -84,10 +88,10 @@ else
                                 @lxUsr.StmMdf
                             </td>
                             <td class="cell-controls">
-                                <a class="btn btn-outline-primary" href="/UsrEdt/@lxUsr.Usr" title="Editar">
+                                <a class="btn btn-outline-primary" href="/UsrEdt/@lxUsr.Usr" title=@L["Edit"]>
                                     <span class="oi oi-pencil"></span>
                                 </a>
-                                <a class="btn btn-outline-primary" href="/UsrBrr/@lxUsr.Usr" title="Borrar">
+                                <a class="btn btn-outline-primary" href="/UsrBrr/@lxUsr.Usr" title=@L["Delete"]>
                                     <span class="oi oi-trash"></span>
                                 </a>
                             </td>
@@ -99,7 +103,7 @@ else
     }
     else
     {
-        <Msg Txt="No hay datos." Cls="alert-info" />
+        <Msg Txt=@L["No data found"] Cls="alert-info" />
     }
 }
 
@@ -147,5 +151,12 @@ else
             }
         }
         IsAsc = !IsAsc;
+    }
+    private async Task Pdf_Exp()
+    {
+        using (System.IO.MemoryStream strm = _UsrBO.Pdf(LstUsrs))
+        {
+            await js.InvokeVoidAsync("jsfunction.saveAsFile", "Usuarios.pdf", strm.ToArray());
+        }
     }
 }

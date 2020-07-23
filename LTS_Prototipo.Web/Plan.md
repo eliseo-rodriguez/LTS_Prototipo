@@ -1,10 +1,28 @@
 ﻿# Plan para el protipo
 
 - [x] Login
+  - [x] Persistir la Session en SessionStoraged (valida para la pestaña de browser)
+  - [ ] Persistir la Session en LocalStorage (validad para el browser)
   - [ ] Restringir acceso según Rol
-  - [ ] Persisteir la Sesion en LocalStorage
 - [x] Usar Dapper
 - [ ] CRUD **Usuarios**
+  - [x] Crear
+  - [x] Editar
+  - [x] Borrar
+  - [x] Consulta (Index)
+    - [x] Ordernar
+      - [ ] Falta ordenar por fechas
+    - [ ] Filtrar
+    - [ ] Buscar
+    - [ ] Paginar
+    - [ ] Exportar a PDF
+      - [x] Usando Syncfunsion (NO gratis, trial)
+      - [ ] Usando [iTextSharp.LGPLv2.Core](https://github.com/VahidN/iTextSharp.LGPLv2.Core) (gratis)
+      - [ ] Usando [PdfReport.Core](https://github.com/VahidN/PdfReport.Core) (gratis)
+      - [ ] Usando [Blazor-PDF](https://github.com/tossnet/Blazor-PDF) (gratis)
+      - [ ] Investigar [PDFSharp](http://www.pdfsharp.net/)
+    - [ ] Exportar a Excel
+- [ ] CRUD **Productos**
   - [x] Crear
   - [x] Editar
   - [x] Borrar
@@ -13,8 +31,15 @@
     - [ ] Filtrar
     - [ ] Buscar
     - [ ] Paginar
-- [ ] CRUD **Productos**
+- [x] Cambiar Estilo y colores usando **Sass**
 - [x] Localización de strings
 - [ ] Documento Tipo Factura
-- [x] Cambiar Estilo y colores usando **Sass**
 - [ ] Componente para Tablas que acepte un objeto (clase) como parámetro.
+- [ ] Componente para buscar tipo F2.
+- [ ] Componente para deplegar valores de Enum
+- [ ] Componente para desplegar una Fecha
+- [ ] Componente para un select (combo) basdo en un Enum
+- [ ] Tabla de Monedas
+- [ ] Tablas de Unidad de Medida
+- [ ] Agregar una imagen a un producto
+- [ ] Agregar una imagen a un usuario

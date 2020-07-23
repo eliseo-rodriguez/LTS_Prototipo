@@ -117,17 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Creado</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
   <data name="Loading..." xml:space="preserve">
     <value>Cargando...</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modificado</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="New User" xml:space="preserve">
     <value>Nuevo Usuario</value>
+  </data>
+  <data name="No data found" xml:space="preserve">
+    <value>No se encontraron datos</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>Producto</value>
