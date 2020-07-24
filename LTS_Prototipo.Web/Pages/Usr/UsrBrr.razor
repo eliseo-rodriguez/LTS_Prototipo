@@ -2,18 +2,18 @@
 
 @inject UsrBO _UsrBO
 
-<h3>Borrar Usuario</h3>
+<h3>@L["Delete User"]</h3>
 
-<p>¿Seguro de Borrar el siguiente producto?</p>
+<p>@L["Sure to Delete user"]?</p>
 <div class="col-8 mb-3">
-    <div class="alert @MsgCls">@Msg</div>
+    <Msg Txt="@Msg" Cls="@MsgCls"/>
     <table class="table table-borderless">
         <tr>
-            <th>Código</th>
+            <th>@L["User"]</th>
             <td>@usr.Usr</td>
         </tr>
         <tr>
-            <th>Nombre</th>
+            <th>@L["Name"]</th>
             <td>@usr.Nom</td>
         </tr>
         <tr>
@@ -26,8 +26,8 @@
         </tr>
     </table>
 
-    <button class="btn btn-danger" @onclick="@Aceptar_Click">Aceptar</button>
-    <button class="btn btn-secondary" @onclick="@Cancel_Click">Cancelar</button>
+    <button class="btn btn-danger" @onclick="@Aceptar_Click">@L["Ok"]</button>
+    <button class="btn btn-secondary" @onclick="@Cancel_Click">@L["Cancel"]</button>
 </div>
 
 @code {
