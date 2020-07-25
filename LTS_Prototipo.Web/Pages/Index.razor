@@ -1,17 +1,15 @@
 ﻿@page "/index"
+@attribute [Authorize]
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+@L["Welcome to your Prototype"].
 
 <AuthorizeView>
     <Authorized>
-        <p>Welcome, @context.User.Identity.Name </p>
-        <image src="/img/Latis_Logo.svg"/>
-        <img src="/img/LatisPro480x320.jpg"/>
+        <p>@L["Welcome"], @context.User.Identity.Name </p>
+        <img src="/img/LatisPro480x320.jpg" />
     </Authorized>
     <NotAuthorized>
-        <p>No está logeado.</p>
+        <Msg Txt="@L["Not Authorized"]" Cls="alert-danger"/>
     </NotAuthorized>
 </AuthorizeView>
 

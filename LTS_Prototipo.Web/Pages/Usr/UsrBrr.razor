@@ -1,4 +1,5 @@
 ﻿@page "/usrbrr/{UsrId}"
+@attribute [Authorize]
 
 @inject UsrBO _UsrBO
 
@@ -6,7 +7,7 @@
 
 <p>@L["Sure to Delete user"]?</p>
 <div class="col-8 mb-3">
-    <Msg Txt="@Msg" Cls="@MsgCls"/>
+    <Msg Txt="@Msg" Cls="@MsgCls" />
     <table class="table table-borderless">
         <tr>
             <th>@L["User"]</th>

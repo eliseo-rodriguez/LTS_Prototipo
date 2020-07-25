@@ -180,6 +180,9 @@
   <data name="No data found" xml:space="preserve">
     <value>No se encontraron datos</value>
   </data>
+  <data name="Not Authorized" xml:space="preserve">
+    <value>No Autorizado</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Aceptar</value>
   </data>
@@ -206,5 +209,11 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Usuarios</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
+  <data name="Welcome to your Prototype" xml:space="preserve">
+    <value>Bienvenido a tú Prototipo</value>
   </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿@page "/prdbrr/{PrdId}"
+@attribute [Authorize]
 
 <h3>Borrar Producto</h3>
 
@@ -23,7 +24,7 @@
             <td>@prd.Mon</td>
         </tr>
     </table>
-    <hr/>
+    <hr />
     <button class="btn btn-danger" @onclick="@Aceptar_Click">Aceptar</button>
     <button class="btn btn-secondary" @onclick="@Cancel_Click">Cancelar</button>
 </div>

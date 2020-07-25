@@ -1,10 +1,11 @@
 ﻿@page "/prdcre"
+@attribute [Authorize]
 
 <h3>Nuevo Producto</h3>
 <hr />
 <div class="col-8">
     <EditForm Model="@prd" OnValidSubmit="VldFrm" OnInvalidSubmit="InVldFrm">
-        <Msg Txt="@Msg"  Cls="@MsgCls"/>
+        <Msg Txt="@Msg" Cls="@MsgCls" />
         <DataAnnotationsValidator />
         <ValidationSummary />
         <div class="form-group">
@@ -50,7 +51,7 @@
     {
         try
         {
-            var lxPrd =  await PrdDM.Prd_Cre(prd);
+            var lxPrd = await PrdDM.Prd_Cre(prd);
             NavMgr.NavigateTo("/Prds");
         }
         catch (Exception ex)
