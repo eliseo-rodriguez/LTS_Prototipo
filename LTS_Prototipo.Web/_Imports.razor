@@ -1,6 +1,7 @@
 ﻿@using LTS_Proto.BL.BO
 @using LTS_Proto.BL.Models
 @using LTS_Proto.Web
+@using LTS_Proto.Web.Data       @*TODO: Mover as BO, DM*@
 @using LTS_Proto.Web.Components
 @using LTS_Proto.Web.Shared
 @using Microsoft.AspNetCore.Authorization
@@ -14,3 +15,4 @@
 
 @inject NavigationManager NavMgr
 @inject IStringLocalizer<App> L
+@inject IJSRuntime js

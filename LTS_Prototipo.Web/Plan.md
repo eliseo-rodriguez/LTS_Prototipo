@@ -2,8 +2,13 @@
 
 - [x] Login
   - [x] Persistir la Session en SessionStoraged (valida para la pestaña de browser)
-  - [ ] Persistir la Session en LocalStorage (validad para el browser)
+  - [ ] Persistir la Session en LocalStorage (valida para el browser)
   - [ ] Restringir acceso según Rol
+- [ ] Menú
+  - [ ] SubMenus
+  - [ ] Filtar opciones
+- [x] Cambiar Estilo y colores usando **Sass**
+- [x] Localización de strings
 - [x] Usar Dapper
 - [ ] CRUD **Usuarios**
   - [x] Crear
@@ -21,6 +26,7 @@
       - [ ] Usando [PdfReport.Core](https://github.com/VahidN/PdfReport.Core) (gratis)
       - [ ] Usando [Blazor-PDF](https://github.com/tossnet/Blazor-PDF) (gratis)
       - [ ] Investigar [PDFSharp](http://www.pdfsharp.net/)
+      - [ ] Investigar [HTML-to-PDF Generator for .NET](https://www.nrecosite.com/pdf_generator_net.aspx)
     - [ ] Exportar a Excel
 - [ ] CRUD **Productos**
   - [x] Crear
@@ -31,8 +37,6 @@
     - [ ] Filtrar
     - [ ] Buscar
     - [ ] Paginar
-- [x] Cambiar Estilo y colores usando **Sass**
-- [x] Localización de strings
 - [ ] Documento Tipo Factura
 - [ ] Componente para Tablas que acepte un objeto (clase) como parámetro.
 - [ ] Componente para buscar tipo F2.

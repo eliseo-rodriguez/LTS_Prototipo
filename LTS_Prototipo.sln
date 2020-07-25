@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTS_Proto.Web", "LTS_Protot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTS_Proto.DL", "LTS_Proto.DL\LTS_Proto.DL\LTS_Proto.DL.csproj", "{3F699882-12EB-46B4-9FD0-3D9EDA306813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTS_Proto.Core", "LTS_Proto.Core\LTS_Proto.Core.csproj", "{4572EC64-9F59-4FA1-A8E3-7D9036FFA6F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTS_Proto.Core", "LTS_Proto.Core\LTS_Proto.Core.csproj", "{4572EC64-9F59-4FA1-A8E3-7D9036FFA6F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

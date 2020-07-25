@@ -3,7 +3,6 @@
 @using System.Security.Claims;
 
 @inherits LayoutComponentBase
-@inject NavigationManager NavMgr
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <div class="sidebar">
@@ -17,12 +16,12 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item ml-auto">
                             <a class="btn btn-outline-primary" href="/UsrDet/@UsrId">@Nom</a>
-                            <a class="btn btn-outline-secondary" href="/" @onclick="Logout">Log Out</a>
+                            <a class="btn btn-outline-secondary" href="/" @onclick="Logout">@L["Logout"]</a>
                     </li>
                 </ul>
             </Authorized>
             <NotAuthorized>
-                <a href="/">Login</a>
+                <a href="/">@L["Login"]</a>
             </NotAuthorized>
         </AuthorizeView>
     </div>

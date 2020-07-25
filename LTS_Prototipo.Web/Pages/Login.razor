@@ -2,12 +2,8 @@
 
 @page "/"
 
-@using LTS_Proto.Web.Data
-
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
-@inject NavigationManager NavMgr
-@inject IJSRuntime js
 @inject UsrBO UsrBO
 
 <div class="login-panel login-item">
@@ -15,26 +11,26 @@
 </div>
 <div class="login-panel login-item login-bg">
     <div class="px-3 py-3">
-        <h2 class="text-center bg-primary">Latis Prototipo</h2>
-        <h3 class="text-center">Login</h3>
+        <h2 class="text-center bg-primary">@L["Latis Prototype"]</h2>
+        <h3 class="text-center">@L["Login"]</h3>
         <EditForm Model="@usr" OnValidSubmit="@UsrVld">
             <DataAnnotationsValidator />
             <ValidationSummary />
             <div>
                 <div class="form-group">
-                    <label for="usr">Usuario</label>
-                    <InputText id="usr" class="form-control col" @bind-Value="usr.Usr" placeholder="Usuario" />
+                    <label for="usr">@L["User"]</label>
+                    <InputText id="usr" class="form-control col" @bind-Value="usr.Usr" placeholder="@L["User"]" />
                     <ValidationMessage For="@(()=>usr.Usr)" />
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <InputText id="psw" type="password" class="form-control col" @bind-Value="usr.Psw" placeholder="Password" />
+                    <label>@L["Password"]</label>
+                    <InputText id="psw" type="password" class="form-control col" @bind-Value="usr.Psw" placeholder="@L["Password"]" />
                     <ValidationMessage For="@(()=>usr.Psw)" />
                 </div>
             </div>
             <div class="text-center">
                 <div class="form-group">
-                    <input type="submit" id="btnSubmit" class="form-control col-6 btn btn-primary" value="Login" />
+                    <input type="submit" id="btnSubmit" class="form-control col-6 btn btn-primary" value="@L["Login"]" />
                 </div>
             </div>
             <Msg Cls="@MsgCls" Txt="@Msg" />
@@ -69,7 +65,7 @@
 
             if (lxUsr == null)
             {
-                (Msg, MsgCls) = Util.Msg_Set("Usuario o contrasña invalida", "alert-danger");
+                (Msg, MsgCls) = Util.Msg_Set("Usuario o contraseña invalida", "alert-danger");
                 return await Task.FromResult(false);
             }
             else

@@ -120,14 +120,32 @@
   <data name="Active" xml:space="preserve">
     <value>Activo</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Creado</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Moneda</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
   </data>
+  <data name="Delete Product" xml:space="preserve">
+    <value>Borrar Producto</value>
+  </data>
+  <data name="Delete User" xml:space="preserve">
+    <value>Borrar Usuario</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
+  </data>
+  <data name="Edit Product" xml:space="preserve">
+    <value>Editar Producto</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Inicio</value>
@@ -135,8 +153,17 @@
   <data name="Inactive" xml:space="preserve">
     <value>Inactivo</value>
   </data>
+  <data name="Latis Prototype" xml:space="preserve">
+    <value>Latis Prototipo</value>
+  </data>
   <data name="Loading..." xml:space="preserve">
     <value>Cargando...</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Cerrar sesión</value>
   </data>
   <data name="Modified" xml:space="preserve">
     <value>Modificado</value>
@@ -144,17 +171,35 @@
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="New Product" xml:space="preserve">
+    <value>Nuevo Producto</value>
+  </data>
   <data name="New User" xml:space="preserve">
     <value>Nuevo Usuario</value>
   </data>
   <data name="No data found" xml:space="preserve">
     <value>No se encontraron datos</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Precio</value>
+  </data>
   <data name="Product" xml:space="preserve">
     <value>Producto</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Productos</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Sure to Delete user" xml:space="preserve">
+    <value>¿Seguro de borrar este usuario</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Usuario</value>

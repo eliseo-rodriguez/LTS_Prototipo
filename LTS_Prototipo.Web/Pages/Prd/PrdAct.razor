@@ -1,0 +1,51 @@
+﻿@page "/PrdAct"
+@page "/PrdAct/{PrdId}"
+<h3>@PagTit</h3>
+<hr />
+
+@if (Prd != null)
+{
+    <div class="col-8">
+        <EditForm Model="@Prd" OnValidSubmit="VldFrm" OnInvalidSubmit="InVldFrm">
+            <Msg Txt="@Msg" Cls="@MsgCls" />
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label for="Prd" class="col-form-label">@L["Product"]</label>
+                @{ string lxCls = PrdId != null ? "form-control disabled" : "form-control"; }
+                <InputText id="Prd" class="@lxCls" @bind-Value="Prd.Prd"/>
+                <ValidationMessage For="@(() => Prd.Prd)" />
+            </div>
+            <div class="form-group">
+                <label for="Dsc" class="col-form-label">@L["Description"]</label>
+                <InputText id="Dsc" class="form-control" @bind-Value="Prd.Dsc" />
+                <ValidationMessage For="@(() => Prd.Dsc)" />
+            </div>
+            <div class="form-group">
+                <label for="Dsc" class="col-form-label">Status</label>
+                <InputSelect @bind-Value="Prd.St" class="form-control">
+                    @foreach (var lxVlr in Enum.GetValues(typeof(PrdSt)))
+                        {
+                        <option value="@lxVlr">@Enum.GetName(typeof(PrdSt), lxVlr)</option>
+                        }
+                </InputSelect>
+                <ValidationMessage For="@(() => Prd.St)" />
+            </div>
+            <div class="form-group">
+                <label for="Prc" class="col-form-label">@L["Price"]</label>
+                <InputNumber id="Prc" class="form-control" @bind-Value="Prd.Prc" />
+                <ValidationMessage For="@(() => Prd.Prc)" />
+            </div>
+            <div class="form-group">
+                <label for="Mon" class="col-form-label">@L["Currency"]</label>
+                <InputText id="Mon" class="form-control" @bind-Value="Prd.Mon" />
+                <ValidationMessage For="@(() => Prd.Mon)" />
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </EditForm>
+    </div>
+}
+else
+{
+    <p><em>@L["Loading..."]</em></p>
+}
