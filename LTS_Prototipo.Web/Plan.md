@@ -33,7 +33,7 @@
   - [x] Editar
   - [x] Borrar
   - [x] Consulta (Index)
-    - [ ] Ordernar
+    - [x] Ordernar
     - [ ] Filtrar
     - [ ] Buscar
     - [ ] Paginar

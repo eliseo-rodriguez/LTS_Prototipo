@@ -45,6 +45,8 @@ namespace LTS_Proto.Web
 
             services.AddScoped<IPrdDM, PrdDM>();
             services.AddScoped<IUsrDM, UsrDM>();
+
+            services.AddScoped<PrdBO>();
             services.AddScoped<UsrBO>();
 
             services.AddBlazoredSessionStorage();

@@ -5,7 +5,7 @@
 
 <AuthorizeView>
     <Authorized>
-        <p>@L["Welcome"], @context.User.Identity.Name </p>
+        <p>@L["Welcome {0}", context.User.Identity.Name] </p>
         <img src="/img/LatisPro480x320.jpg" />
     </Authorized>
     <NotAuthorized>

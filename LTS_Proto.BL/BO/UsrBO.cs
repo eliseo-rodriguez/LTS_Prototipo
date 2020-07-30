@@ -24,7 +24,11 @@ namespace LTS_Proto.BL.BO {
             return lxUsr;
         }
         public void Brr(string UsrId) {
-            UsrDM.Brr(UsrId);
+            try {
+                UsrDM.Brr(UsrId);
+            } catch(Exception ex) {
+                throw ex;
+            }
         }
         public async Task<int> Cre(UsrModel usr) {
             try {
@@ -35,16 +39,30 @@ namespace LTS_Proto.BL.BO {
             }
         }
         public void Grd(UsrModel usr) {
-            UsrDM.Grd(usr);
+            try {
+                UsrDM.Grd(usr);
+
+            } catch(Exception ex) {
+
+                throw ex;
+            }
         }
 
         public UsrModel Obt(string usr) {
-            UsrModel lxUsr = UsrDM.Obt(usr);
-            return lxUsr;
+            try {
+                UsrModel lxUsr = UsrDM.Obt(usr);
+                return lxUsr;
+            } catch(Exception ex) {
+                throw ex;
+            }
         }
 
         public async Task<IEnumerable<UsrModel>> Lst_Obt() {
-            return await UsrDM.Lst_Obt();
+            try {
+                return await UsrDM.Lst_Obt();
+            } catch(Exception ex) {
+                throw ex;
+            }
         }
 
         public MemoryStream Pdf(IEnumerable<UsrModel> lstUsrs) {

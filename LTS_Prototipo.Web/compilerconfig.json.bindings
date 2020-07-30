@@ -1,1 +1,1 @@
-﻿///<binding Clean='All files' />
+﻿///<binding BeforeBuild='All files' Clean='All files' />

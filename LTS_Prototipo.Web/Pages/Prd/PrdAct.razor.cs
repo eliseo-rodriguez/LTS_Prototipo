@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using LTS_Proto.BL.BO;
 
 namespace LTS_Proto.Web.Pages.Prd
 {
@@ -13,29 +14,40 @@ namespace LTS_Proto.Web.Pages.Prd
     {
         [Parameter]
         public string PrdId { get; set; }
+        public bool EsEdt { get; set; }
 
         protected PrdModel Prd = new PrdModel();
         protected string Msg;
         protected string MsgCls;
         protected string PagTit;
+        private readonly PrdBO _PrdBO;
 
-        protected override void OnParametersSet() {
-            if(PrdId == null || PrdId == "") {
-                PagTit = L["New Product"];
-                Prd = new PrdModel();
-            } else {
-                PagTit = L["Edit Product"];
-            }
+        public PrdAct(PrdBO prdBO) {
+            _PrdBO = prdBO;
         }
 
+        protected override void OnParametersSet() {
+            EsEdt = !(PrdId == null || PrdId == "");
+
+            if(EsEdt) {
+                PagTit = L["Edit Product"];
+            } else {
+                PagTit = L["New Product"];
+                Prd = new PrdModel();
+            }
+        }
         protected override async Task OnAfterRenderAsync(bool firstRender) {
             if(firstRender) {
-                await js.InvokeVoidAsync("jsfunction.focusElement", "Prd");
+                if(EsEdt) {
+                    await js.InvokeVoidAsync("jsfunction.focusElement", "Dsc");
+                } else {
+                    await js.InvokeVoidAsync("jsfunction.focusElement", "Prd");
+                }
             }
         }
         protected override void OnInitialized() {
             try {
-                Prd = PrdDM.Prd_Obt(PrdId);
+                Prd = _PrdBO.Obt(PrdId);
 
             } catch(Exception ex) {
                 (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
@@ -44,12 +56,11 @@ namespace LTS_Proto.Web.Pages.Prd
 
         protected void VldFrm() {
             try {
-                if(PrdId == null || PrdId == "") {
-                    PrdDM.Prd_Cre(Prd);
+                if(EsEdt) {
+                    _PrdBO.Grd(Prd);
                 } else {
-                    PrdDM.Prd_Grd(Prd);
+                    _ = _PrdBO.Cre(Prd);
                 }
-                
                 NavMgr.NavigateTo("/Prds");
             } catch(Exception ex) {
                 (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
