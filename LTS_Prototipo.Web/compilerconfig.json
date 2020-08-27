@@ -1,7 +1,12 @@
 ﻿[
   {
     "inputFile": "../../../../.nuget/packages/bootstrap.sass/4.5.2/contentFiles/any/any/wwwroot/scss/bootstrap.scss",
-    "outputFile": "C:\\Users\\rodri\\source\\Blazor\\LTS_Prototipo\\LTS_Prototipo.Web\\wwwroot\\css\\bootstrap\\bootstrap.css",
-    "minify": { "enabled": true }
+    "minify": { "enabled": true },
+    "outputFile": "C:\\Users\\rodri\\source\\Blazor\\LTS_Prototipo\\LTS_Prototipo.Web\\wwwroot\\css\\bootstrap\\bootstrap.css"
+  },
+  {
+    "inputFile": "wwwroot/scss/site.scss",
+    "minify": { "enabled": true },
+    "outputFile": "wwwroot/css/site.css"
   }
 ]

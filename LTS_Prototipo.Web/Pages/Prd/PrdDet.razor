@@ -1,9 +1,9 @@
 ﻿@page "/PrdDet/{PrdId}"
+@inject PrdBO _PrdBO 
 
+<Msg Txt="@Msg" Cls="@MsgCls" />
 
-<Msg Txt="@Msg" class="@MsgCls" />
-
-@if (Prd != null)
+@if (Prd == null)
 {
     <Loading />
 }
@@ -13,7 +13,7 @@ else
     <hr/>
     <div class="col-8">
         <div class="table-responsive">
-            <table>
+            <table class="table table-striped table-sm">
                 <tr>
                     <th>@L["Prduct"]</th>
                     <td>@Prd.Prd</td>

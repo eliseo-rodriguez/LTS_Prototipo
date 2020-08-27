@@ -120,6 +120,9 @@
   <data name="Active" xml:space="preserve">
     <value>Activo</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Volver</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>

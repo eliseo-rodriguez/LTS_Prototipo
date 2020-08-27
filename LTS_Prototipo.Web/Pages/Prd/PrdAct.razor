@@ -1,6 +1,7 @@
 ﻿@page "/PrdAct"
 @page "/PrdAct/{PrdId}"
 @attribute [Authorize]
+@inject PrdBO _PrdBO 
 
 <h3>@PagTit</h3>
 <hr />
@@ -45,7 +46,8 @@
                 <InputText id="Mon" class="form-control" @bind-Value="Prd.Mon" />
                 <ValidationMessage For="@(() => Prd.Mon)" />
             </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary">@L["Save"]</button>
+            <button type="button" class="btn btn-outline-primary" @onclick="Back_Click">@L["Back"]</button>
         </EditForm>
     </div>
 }

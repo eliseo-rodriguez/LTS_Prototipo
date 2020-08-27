@@ -14,6 +14,10 @@ Proyecto que almacena las clases que representan los Modelos (Tablas) y View que
 
 Proyecto para "Bussiness Logic". Contiene los BO.
 
+## LTS_Proto.DL
+
+Proyecto para data manager. Contiene los DM.
+
 ## LTS_Proto.Web
 
 Proyecto Web (En Blazor) Prototipo
