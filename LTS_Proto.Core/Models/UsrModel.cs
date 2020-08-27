@@ -26,5 +26,7 @@ namespace LTS_Proto.BL.Models
 
         public DateTime StmCre { get; set; }
         public DateTime StmMdf { get; set; }
+
+        public byte[] Fot { get; set; }
     }
 }

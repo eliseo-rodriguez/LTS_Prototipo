@@ -26,6 +26,7 @@ namespace LTS_Proto.Web.Pages.Prd
             _PrdBO = prdBO;
         }
 
+        // 1
         protected override void OnParametersSet() {
             EsEdt = !(PrdId == null || PrdId == "");
 
@@ -36,6 +37,7 @@ namespace LTS_Proto.Web.Pages.Prd
                 Prd = new PrdModel();
             }
         }
+        //3
         protected override async Task OnAfterRenderAsync(bool firstRender) {
             if(firstRender) {
                 if(EsEdt) {
@@ -45,6 +47,7 @@ namespace LTS_Proto.Web.Pages.Prd
                 }
             }
         }
+        //2
         protected override void OnInitialized() {
             try {
                 Prd = _PrdBO.Obt(PrdId);

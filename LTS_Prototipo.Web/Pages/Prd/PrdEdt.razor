@@ -3,7 +3,6 @@
 
 <h3>Editar Producto</h3>
 <hr />
-
 <div class="col-8">
     <EditForm Model="@prd" OnValidSubmit="VldFrm" OnInvalidSubmit="InVldFrm">
         <Msg Txt="@Msg" Cls="@MsgCls" />
@@ -21,12 +20,7 @@
         </div>
         <div class="form-group">
             <label for="Dsc" class="col-form-label">Status</label>
-            <InputSelect @bind-Value="prd.St" class="form-control">
-                @foreach (var lxVlr in Enum.GetValues(typeof(PrdSt)))
-                {
-                    <option value="@lxVlr">@Enum.GetName(typeof(PrdSt), lxVlr)</option>
-                }
-            </InputSelect>
+            <InputSelectEnum @bind-Value="prd.St" class="form-control"/>
             <ValidationMessage For="@(()=>prd.St)" />
         </div>
         <div class="form-group">

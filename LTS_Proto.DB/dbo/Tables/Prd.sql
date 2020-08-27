@@ -4,5 +4,6 @@
     [Dsc] VARCHAR(250) NOT NULL, 
     [St] INT NULL, 
     [Prc] MONEY NULL, 
-    [Mon] VARCHAR(10) NULL
+    [Mon] VARCHAR(10) NULL, 
+    [Fot] VARBINARY(MAX) NULL
 )

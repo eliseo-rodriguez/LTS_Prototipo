@@ -22,7 +22,7 @@
     - [ ] Paginar
     - [ ] Exportar a PDF
       - [x] Usando Syncfunsion (NO gratis, trial)
-      - [ ] Usando [iTextSharp.LGPLv2.Core](https://github.com/VahidN/iTextSharp.LGPLv2.Core) (gratis)
+      - [ ] Usando [iTextSharp.LGPLv2.Core](https://github.com/VahidN/iTextSharp.LGPLv2.Core) (gratis) <---- Creo que este es el que vamos a usar
       - [ ] Usando [PdfReport.Core](https://github.com/VahidN/PdfReport.Core) (gratis)
       - [ ] Usando [Blazor-PDF](https://github.com/tossnet/Blazor-PDF) (gratis)
       - [ ] Investigar [PDFSharp](http://www.pdfsharp.net/)
@@ -37,12 +37,13 @@
     - [ ] Filtrar
     - [ ] Buscar
     - [ ] Paginar
-- [ ] Documento Tipo Factura
+- [x] Componente para dedplegar valores de Enum
+- [x] Componente para un select (combo) basado en un Enum
+- [ ] Carrito de compras
+- [ ] Documento Tipo Factura 
 - [ ] Componente para Tablas que acepte un objeto (clase) como parámetro.
 - [ ] Componente para buscar tipo F2.
-- [ ] Componente para deplegar valores de Enum
 - [ ] Componente para desplegar una Fecha
-- [ ] Componente para un select (combo) basdo en un Enum
 - [ ] Tabla de Monedas
 - [ ] Tablas de Unidad de Medida
 - [ ] Agregar una imagen a un producto

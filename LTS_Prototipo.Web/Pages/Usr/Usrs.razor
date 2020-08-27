@@ -15,7 +15,7 @@
 
 @if (LstUsrs == null)
 {
-    <p>@L["Loading..."]</p>
+    <Loading/>
 }
 else
 {
@@ -56,7 +56,7 @@ else
                             </span>
                         </th>
                         <th>
-                            <span class="sort-link" @onclick="@(() => Tbl_Ord("StMdf"))">
+                            <span class="sort-link" @onclick="@(() => Tbl_Ord("StmMdf"))">
                                 @L["Modified"]
                                 <span class="oi @(Ord_Sty("StmMdf"))"></span>
                             </span>

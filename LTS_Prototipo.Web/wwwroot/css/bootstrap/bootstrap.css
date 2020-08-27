@@ -5,8 +5,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 .bg-primary {
-  background-color: #0b0d67;
-  color: set-text-color(#0b0d67); }
+    background-color: #ffc107;
+    color: set-text-color(#0b0d67);
+}
 
 :root {
   --blue: #007bff;
