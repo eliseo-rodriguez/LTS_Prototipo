@@ -8,7 +8,7 @@ Proyecto de Base de Datos. Contiene la estructura de la base de datos. Con el co
 
 ## LTS_Proto.Core
 
-Proyecto que almacena las clases que representan los Modelos (Tablas) y View que usuará la aplicación.
+Proyecto que almacena las clases que representan los Modelos (Tablas) que usa la aplicación.
 
 ## LTS_Proto.BL
 
