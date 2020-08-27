@@ -24,4 +24,4 @@ Proyecto Web (En Blazor) Prototipo
 
 ## Plan de desarrollo
 
-Click en el [Plan](/LTS_Protipo.Web/Plan.md).
+Click en el [Plan](LTS_Protipo.Web/Plan.md).
