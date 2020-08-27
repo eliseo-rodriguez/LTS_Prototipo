@@ -1,0 +1,48 @@
+﻿@page "/PrdDet/{PrdId}"
+
+
+<Msg Txt="@Msg" class="@MsgCls" />
+
+@if (Prd != null)
+{
+    <Loading />
+}
+else
+{
+    <h3>Detalles de @PrdId</h3>
+    <hr/>
+    <div class="col-8">
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <th>@L["Prduct"]</th>
+                    <td>@Prd.Prd</td>
+                </tr>
+                <tr>
+                    <th>@L["Description"]</th>
+                    <td>@Prd.Dsc</td>
+                </tr>
+                <tr>
+                    <th>@L["Price"]</th>
+                    <td>@Prd.Prc</td>
+                </tr>
+                <tr>
+                    <th>@L["Mon"]</th>
+                    <td>@Prd.Mon</td>
+                </tr>
+                <tr>
+                    <th>@L["Status"]</th>
+                    <td>@Enum.GetName(typeof(PrdSt), Prd.St)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-outline-primary" href="/PrdAct/@PrdId" title=@L["Edit"]>
+            <span class="oi oi-pencil"></span> @L["Edit"]
+        </a>
+        <a class="btn btn-outline-danger" href="/PrdBrr/@PrdId" title=@L["Borrar"]>
+            <span class="oi oi-trash"></span> @L["Delete"]
+        </a>
+    </div>
+}

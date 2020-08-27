@@ -3,80 +3,99 @@
 
 @inject UsrBO _UsrBO
 
-<h3>Usuario</h3>
-<hr />
-<div class="table-responsive">
-    <div class="col-8">
-        <table class="table table-sm table-hover">
-            <tr>
-                <th>
-                    Usuario
-                </th>
+<Msg Txt="@Msg" class="@MsgCls" />
 
-                <td>
-                    @usr.Usr
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Nombre
-                </th>
-                <td>
-                    @usr.Nom
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Rol
-                </th>
-                <td>
-                    @usr.Rol
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Status
-                </th>
-                <td>
-                    @Enum.GetName(typeof(UsrSt), usr.St)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Creación
-                </th>
-                <td>
-                    @usr.StmCre
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Modificación
-                </th>
-                <td>
-                    @usr.StmMdf
-                </td>
-            </tr>
-        </table>
+@if (usr != null)
+{
+    <Loading />
+}
+else
+{
+    <h3>Usuario</h3>
+    <hr />
+    <div class="col-8">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <tr>
+                    <th>
+                        @L["User"]
+                    </th>
+
+                    <td>
+                        @usr.Usr
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @L["Name"]
+                    </th>
+                    <td>
+                        @usr.Nom
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Rol
+                    </th>
+                    <td>
+                        @usr.Rol
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Status
+                    </th>
+                    <td>
+                        @Enum.GetName(typeof(UsrSt), usr.St)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @L["Created"]
+                    </th>
+                    <td>
+                        @usr.StmCre
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @L["Modified"]
+                    </th>
+                    <td>
+                        @usr.StmMdf
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-</div>
-<div>
-    <a class="btn btn-outline-primary" href="/UsrEdt/@UsrId" title="Editar">
-        <span class="oi oi-pencil"></span> Editar
-    </a>
-    <a class="btn btn-outline-danger" href="/UsrBrr/@UsrId" title="Borrar">
-        <span class="oi oi-trash"></span> Eliminar
-    </a>
-</div>
+    <div>
+        <a class="btn btn-outline-primary" href="/UsrEdt/@UsrId" title="Editar">
+            <span class="oi oi-pencil"></span> @L["Edit"]
+        </a>
+        <a class="btn btn-outline-danger" href="/UsrBrr/@UsrId" title="Borrar">
+            <span class="oi oi-trash"></span> @L["Delete"]
+        </a>
+    </div>
+}
+
 @code {
     UsrModel usr;
 
     [Parameter]
     public string UsrId { get; set; }
 
+    protected string Msg;
+    protected string MsgCls;
+
     protected override void OnInitialized()
     {
-        usr = _UsrBO.Obt(UsrId);
+        try {
+            usr = _UsrBO.Obt(UsrId);
+        }
+        catch (Exception ex)
+        {
+            (Msg, MsgCls) = Util.Msg_Set(ex.Message, "alert-danger");
+        }
     }
 
 }
