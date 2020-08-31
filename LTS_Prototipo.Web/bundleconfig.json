@@ -1,14 +1,8 @@
 [
   {
-    "outputFileName": "../../../../.nuget/packages/bootstrap.sass/4.5.0/contentFiles/any/any/wwwroot/js/bootstrap.min.min.js",
-    "inputFiles": [
-      "../../../../.nuget/packages/bootstrap.sass/4.5.0/contentFiles/any/any/wwwroot/js/bootstrap.min.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/js/bootstrap.min.js",
     "inputFiles": [
-      "../../../../.nuget/packages/bootstrap.sass/4.5.0/contentFiles/any/any/wwwroot/js/bootstrap.js"
+      "wwwroot/js/bootstrap.min.js"
     ]
   },
   {

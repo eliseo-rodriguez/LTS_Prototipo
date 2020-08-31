@@ -1,8 +1,8 @@
 ﻿[
   {
-    "inputFile": "../../../../.nuget/packages/bootstrap.sass/4.5.2/contentFiles/any/any/wwwroot/scss/bootstrap.scss",
+    "inputFile": "wwwroot/scss/bootstrap.scss",
     "minify": { "enabled": true },
-    "outputFile": "C:\\Users\\rodri\\source\\Blazor\\LTS_Prototipo\\LTS_Prototipo.Web\\wwwroot\\css\\bootstrap\\bootstrap.css"
+    "outputFile": "wwwroot/css/bootstrap/bootstrap.css"
   },
   {
     "inputFile": "wwwroot/scss/site.scss",
